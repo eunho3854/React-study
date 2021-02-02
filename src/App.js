@@ -1,41 +1,46 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+// useMemo => 메모라이제이션(기억)
+
+import { useMemo, useState } from 'react';
 
 function App() {
-  const [data, setData] = useState(0);
-  const [search, setSearch] = useState(0);
+  const [list, setList] = useState([1, 2, 3, 4]);
+  const [str, setStr] = useState('합계');
 
-  // 실행시점 :
-  // (1) App() 함수가 최초 실행될 때 (마운트될 때)
-  // (2) 상태 변수가 변경될 때 (그게 dependencyList에 등록되어 있어야함)
-  // (3) 의존리스트 관리를 할 수 있다.
-
-  const download = () => {
-    let downloadData = 5;
-    setData(downloadData);
+  const getAddResult = () => {
+    // 1초
+    let sum = 0;
+    list.forEach((i) => (sum = sum + i));
+    console.log('sum 함수 실행됨 : ', sum);
+    return sum;
   };
 
-  useEffect(() => {
-    console.log('useEffect 실행됨');
-    download();
-  }, [search]); // 의존 관계
+  const addResult = useMemo(() => getAddResult(), [list]);
+
   return (
     <div>
       <button
         onClick={() => {
-          setSearch(2);
+          setStr('안녕');
         }}
       >
-        검색하기
+        문자 변경
       </button>
-      <h1>데이터 : {data}</h1>
+
       <button
         onClick={() => {
-          setData(data + 1);
+          setList([...list, 10]);
         }}
       >
-        더하기
+        리스트값 추가
       </button>
+      <div>
+        {list.map((i) => (
+          <h1>{i}</h1>
+        ))}
+      </div>
+      <div>
+        {str} : {addResult}
+      </div>
     </div>
   );
 }
