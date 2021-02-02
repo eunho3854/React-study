@@ -1,20 +1,41 @@
-// useRef (디자인)
-// dom을 변경할 때 사용
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
+import './App.css';
 
 function App() {
-  const myRef = useRef(null);
+  const [data, setData] = useState(0);
+  const [search, setSearch] = useState(0);
 
+  // 실행시점 :
+  // (1) App() 함수가 최초 실행될 때 (마운트될 때)
+  // (2) 상태 변수가 변경될 때 (그게 dependencyList에 등록되어 있어야함)
+  // (3) 의존리스트 관리를 할 수 있다.
+
+  const download = () => {
+    let downloadData = 5;
+    setData(downloadData);
+  };
+
+  useEffect(() => {
+    console.log('useEffect 실행됨');
+    download();
+  }, [search]); // 의존 관계
   return (
     <div>
       <button
         onClick={() => {
-          myRef.current.style.backgroundColor = 'red';
+          setSearch(2);
         }}
       >
-        색 변경
+        검색하기
       </button>
-      <div ref={myRef}>박스</div>
+      <h1>데이터 : {data}</h1>
+      <button
+        onClick={() => {
+          setData(data + 1);
+        }}
+      >
+        더하기
+      </button>
     </div>
   );
 }
