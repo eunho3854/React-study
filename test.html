@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <script>
+      // concat, filter, map, slice, 스프레드(전개) 연산자
+      const a = [1, 2, 3];
+      const b = [...a];
+
+      console.log('1. ============== 스프레드 연산자'); // 배열 복제
+      b.push(4); // b의 데이터 변경
+
+      console.log(`a의 값은 : ${a}`); // 1, 2, 3
+      console.log(`b의 값은 : ${b}`); // 1, 2, 3, 4
+
+      console.log('2. =============== 추가하기'); // 추가하기
+      const a2 = [1, 2, 3];
+      const b2 = a2.concat(4);
+
+      console.log(`a2의 값은 : ${a2}`); // 1,2,3
+      console.log(`b2의 값은 : ${b2}`); // 1,2,3,4
+      const c2 = [0, ...a2, 4];
+      console.log(`c2의 값은 : ${c2}`); // 0,1,2,3,4
+
+      console.log('3. =============== 걸러내기'); // 삭제하기
+      const a3 = [1, 2, 3];
+      const b3 = a3.filter((n) => {
+        return n != 1;
+      }); // bool을 return 받는다. -> true만 걸러낸다.
+      console.log(`b3의 값은 : ${b3}`); // 2, 3
+
+      console.log('4. =============== 잘라내기');
+      const a4 = [1, 2, 3];
+      const b4 = a4.slice(0, 2);
+      console.log(b4); // [1, 2]
+      const c4 = [...a4.slice(0, 2), 4, ...a4.slice(2, 3)];
+      console.log(c4); // [1, 2, 4, 3]
+
+      console.log('5. =============== 반복하기');
+      const a5 = [1, 2, 3];
+      // a5.forEach((n) => {console.log(n);}); // return 못함
+      const b5 = a5.map((n) => n + 10); // const b5 = [...a5];
+      console.log(b5);
+
+      console.log('6. =============== 수정하기');
+      const data = { phone: '2222' };
+      const a6 = { id: 1, name: '홍길동', phone: '1111' };
+      const b6 = { ...a6, ...data };
+      console.log(b6);
+
+      const users = [
+        { id: 1, name: '김김김', phone: '2222' },
+        { id: 2, name: '이이이', phone: '3333' },
+        { id: 3, name: '박박박', phone: '4444' },
+      ];
+
+      const updateUserDto = {
+        id: 2,
+        name: '홍길동',
+      };
+
+      const updateUserDto2 = {
+        id: 5,
+        name: '박박박',
+      };
+
+      const newUser = users.map((user) =>
+        user.id === updateUserDto.id ? { ...user, ...updateUserDto } : user,
+      ); // const newUser = {...users}
+
+      const oldUser = users.map((user) =>
+        user.name === updateUserDto2.name
+          ? { ...user, ...updateUserDto2 }
+          : user,
+      );
+      console.log('newUser', newUser);
+      console.log('oldUser', oldUser);
+      // users[1].name = updateUserDto.name;
+    </script>
+  </body>
+</html>
