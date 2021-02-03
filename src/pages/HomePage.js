@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
 import Home from '../components/home/Home';
 
 const HomePage = () => {
   // http 요청 (fetch, axios(다운))
   const [boards, setBoards] = useState([]);
-
   const [number, setNumber] = useState(0);
+  const [user, setUser] = useState({});
 
   // 빈 배열 한번만 실행
   useEffect(() => {
@@ -20,18 +18,18 @@ const HomePage = () => {
 
     // 빈데이터
     setBoards([...data]);
+    setUser({ id: 1, username: 'ssar' });
   }, []);
 
   return (
     <div>
-      <Header />
       <Home
         boards={boards}
         setBoards={setBoards}
         number={number}
         setNumber={setNumber}
+        user={user}
       />
-      <Footer />
     </div>
   );
 };
