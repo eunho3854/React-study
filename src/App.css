@@ -1,8 +1,9 @@
-.box-style {
-  color: blue;
-  background-color: blue;
+.container {
+  height: 700px;
+  border: 2px solid black;
 }
 
-.menu {
-  display: flex;
+.sub_container {
+  height: 250px;
+  border: 2px solid black;
 }

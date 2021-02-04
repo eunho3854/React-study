@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import Bottom from './components/Bottom';
+import './App.css';
+import React from 'react';
 import Top from './components/Top';
+import Bottom from './components/Bottom';
 
 function App() {
-  const [number, setNumber] = useState(0);
-
   return (
-    <div>
-      <Top number={number} />
-      <Bottom number={number} setNumber={setNumber} />
+    <div className="container">
+      <h1>최상단 화면</h1>
+      <Top />
+      <Bottom />
     </div>
   );
 }

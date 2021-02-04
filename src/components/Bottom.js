@@ -1,32 +1,16 @@
+import '../App.css';
 import React from 'react';
-import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { decrease, increase } from '../store';
 
-const StyledBottomDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  height: 300px;
-  text-align: center;
-`;
-
-const Bottom = (props) => {
-  const { number, setNumber } = props;
-
-  const add = () => {
-    setNumber(number + 1);
-  };
-
-  const minus = () => {
-    setNumber(number - 1);
-  };
+const Bottom = () => {
+  const dispatcher = useDispatch();
 
   return (
-    <div>
-      <StyledBottomDiv>
-        <button onClick={add}>+</button>
-        <button onClick={minus}>-</button>
-      </StyledBottomDiv>
+    <div className="sub_container">
+      <h1>BOTTOM</h1>
+      <button onClick={() => dispatcher(increase('cos'))}>증가</button>
+      <button onClick={() => dispatcher(decrease())}>감소</button>
     </div>
   );
 };

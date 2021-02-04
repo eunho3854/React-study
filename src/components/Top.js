@@ -1,21 +1,15 @@
+import '../App.css';
 import React from 'react';
-import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
-const StyledTopDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  height: 300px;
-  text-align: center;
-`;
-
-const Top = (props) => {
-  const { number } = props;
+const Top = () => {
+  const { number, username } = useSelector((store) => store);
 
   return (
-    <div>
-      <StyledTopDiv>번호 : {number} </StyledTopDiv>
+    <div className="sub_container">
+      <h1>TOP</h1>
+      번호 : {number}
+      이름 : {username}
     </div>
   );
 };
