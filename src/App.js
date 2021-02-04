@@ -1,14 +1,28 @@
-import './App.css';
 import React from 'react';
-import Top from './components/Top';
-import Bottom from './components/Bottom';
+import { createGlobalStyle } from 'styled-components';
+import TodoCreate from './components/TodoCreate';
+import TodoHead from './components/TodoHead';
+import TodoList from './components/TodoList';
+import TodoTemplate from './components/TodoTemplate';
+import { TodoProvider } from './TodoContext';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: #e9ecef;
+  }
+`;
 
 function App() {
   return (
-    <div className="container">
-      <h1>최상단 화면</h1>
-      <Top />
-      <Bottom />
+    <div>
+      <TodoProvider>
+        <GlobalStyle />
+        <TodoTemplate>
+          <TodoHead />
+          <TodoList />
+          <TodoCreate />
+        </TodoTemplate>
+      </TodoProvider>
     </div>
   );
 }
