@@ -1,11 +1,14 @@
-import ListPage from './pages/ListPage';
-
-// exact = 주소를 정확하게 읽어라. ("/"와 "login" 구분)
+import { useState } from 'react';
+import Bottom from './components/Bottom';
+import Top from './components/Top';
 
 function App() {
+  const [number, setNumber] = useState(0);
+
   return (
     <div>
-      <ListPage />
+      <Top number={number} />
+      <Bottom number={number} setNumber={setNumber} />
     </div>
   );
 }
